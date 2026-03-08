@@ -1,1 +1,2 @@
-# SSAFY-ToyProject-01
+# 스터디 개요
+
