@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>일정 관리</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="page schedule-page">
+    <header class="top-bar card">
+        <div>
+            <strong>로그인 사용자:</strong>
+            <span id="displayName">-</span>
+        </div>
+        <button id="logoutButton" class="btn">로그아웃</button>
+    </header>
+
+    <section class="card summary-box">
+        <h2>가까운 일정 요약</h2>
+        <div class="summary-grid">
+            <div><strong>다가오는 일정 수</strong><span id="upcomingCount">0</span></div>
+            <div><strong>중요 일정 수</strong><span id="importantCount">0</span></div>
+            <div><strong>가장 가까운 일정</strong><span id="nearestTitle">-</span></div>
+            <div><strong>가장 가까운 시작 시각</strong><span id="nearestStartAt">-</span></div>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2>일반 일정 등록</h2>
+        <form id="scheduleForm">
+            <div class="form-row">
+                <label for="title">제목</label>
+                <input type="text" id="title" required>
+            </div>
+
+            <div class="form-row">
+                <label for="description">설명</label>
+                <input type="text" id="description">
+            </div>
+
+            <div class="form-row">
+                <label for="startAt">시작</label>
+                <input type="datetime-local" id="startAt" required>
+            </div>
+
+            <div class="form-row">
+                <label for="endAt">종료</label>
+                <input type="datetime-local" id="endAt" required>
+            </div>
+
+            <div class="form-row checkbox-row">
+                <label for="important">중요 일정</label>
+                <input type="checkbox" id="important">
+            </div>
+
+            <button type="submit" class="btn primary">일정 등록</button>
+        </form>
+    </section>
+
+    <section class="card">
+        <h2>반복 일정 등록</h2>
+        <form id="repeatForm">
+            <div class="form-row">
+                <label for="repeatTitle">제목</label>
+                <input type="text" id="repeatTitle" required>
+            </div>
+
+            <div class="form-row">
+                <label for="repeatDescription">설명</label>
+                <input type="text" id="repeatDescription">
+            </div>
+
+            <div class="form-row">
+                <label for="repeatStartAt">시작</label>
+                <input type="datetime-local" id="repeatStartAt" required>
+            </div>
+
+            <div class="form-row">
+                <label for="repeatEndAt">종료</label>
+                <input type="datetime-local" id="repeatEndAt" required>
+            </div>
+
+            <div class="form-row checkbox-row">
+                <label for="repeatImportant">중요 일정</label>
+                <input type="checkbox" id="repeatImportant">
+            </div>
+
+            <div class="form-row">
+                <label for="repeatType">반복 유형</label>
+                <select id="repeatType" required>
+                    <option value="DAILY">매일</option>
+                    <option value="WEEKLY">매주</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label for="repeatCount">반복 횟수</label>
+                <input type="number" id="repeatCount" min="1" value="3" required>
+            </div>
+
+            <button type="submit" class="btn primary">반복 일정 등록</button>
+        </form>
+    </section>
+
+    <section class="card">
+        <h2>일정 수정</h2>
+        <form id="editForm">
+            <input type="hidden" id="editScheduleId">
+
+            <div class="form-row">
+                <label for="editTitle">제목</label>
+                <input type="text" id="editTitle" required>
+            </div>
+
+            <div class="form-row">
+                <label for="editDescription">설명</label>
+                <input type="text" id="editDescription">
+            </div>
+
+            <div class="form-row">
+                <label for="editStartAt">시작</label>
+                <input type="datetime-local" id="editStartAt" required>
+            </div>
+
+            <div class="form-row">
+                <label for="editEndAt">종료</label>
+                <input type="datetime-local" id="editEndAt" required>
+            </div>
+
+            <div class="form-row checkbox-row">
+                <label for="editImportant">중요 일정</label>
+                <input type="checkbox" id="editImportant">
+            </div>
+
+            <div class="button-row">
+                <button type="submit" class="btn primary">수정 저장</button>
+                <button type="button" id="editCancelButton" class="btn">수정 취소</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="card">
+        <h2>일정 목록</h2>
+        <div id="scheduleList" class="schedule-list"></div>
+    </section>
+</div>
+
+<script src="/js/schedule.js"></script>
+</body>
+</html>
